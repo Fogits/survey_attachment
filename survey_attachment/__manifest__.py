@@ -10,7 +10,7 @@
     'description': """
         Add attachment to survey
     """,
-    'author': "Fogits Solutions",
+    'author': "Fogits Solutions and Ivan Porras",
     'images': ['static/description/survey.jpg'],
     'depends': ["base","survey","website"],
     'data': [
