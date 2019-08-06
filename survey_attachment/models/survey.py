@@ -6,13 +6,13 @@ import base64
 class SurveyQuestion(models.Model):
     _inherit = 'survey.question'
 
-    question_attachment = fields.Binary('Question attachment')
+    question_attachment = fields.Binary('Pregunta adjuntos')
     type = fields.Selection([
         ('free_text', 'Multiple Lines Text Box'),
         ('textbox', 'Single Line Text Box'),
         ('numerical_box', 'Numerical Value'),
-        ('date', 'Date'),
-        ('upload_file', 'Upload file'),
+        ('datetime', 'Fecha y hora'),
+        ('upload_file', 'Subir archivo'),
         ('simple_choice', 'Multiple choice: only one answer'),
         ('multiple_choice', 'Multiple choice: multiple answers allowed'),
         ('matrix', 'Matrix')], string='Type of Question', default='free_text', required=True)
@@ -24,9 +24,9 @@ class SurveyUserInputLine(models.Model):
     answer_type = fields.Selection([
         ('text', 'Text'),
         ('number', 'Number'),
-        ('date', 'Date'),
+        ('datetime', 'Fecha y hora'),
         ('free_text', 'Free Text'),
-        ('upload_file', 'Upload file'),
+        ('upload_file', 'Subir archivo'),
         ('suggestion', 'Suggestion'),
         ('list', 'List box'),
         ('matrix_models', 'Matrix models')], string='Answer Type')
