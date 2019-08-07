@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_attachment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-05 19:53+0000\n"
+"PO-Revision-Date: 2019-08-05 14:54-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_MX\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: survey_attachment
+#: model:ir.ui.view,arch_db:survey_attachment.upload_file
+msgid "<span>Choose file</span>"
+msgstr "<span>Choose file</span>"
+
+#. module: survey_attachment
+#: model:ir.model.fields,field_description:survey_attachment.field_survey_user_input_line_file_type
+msgid "File type"
+msgstr "Tipo Archivo"
+
+#. module: survey_attachment
+#: model:ir.model.fields,field_description:survey_attachment.field_survey_question_question_attachment
+msgid "Pregunta adjuntos"
+msgstr "Pregunta adjuntos"
+
+#. module: survey_attachment
+#: model:ir.model,name:survey_attachment.model_survey_question
+msgid "Survey Question"
+msgstr "Pregunta de la encuesta"
+
+#. module: survey_attachment
+#: model:ir.model,name:survey_attachment.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Línea de entrada de usuario de la encuesta"
+
+#. module: survey_attachment
+#: model:ir.ui.view,arch_db:survey_attachment.upload_file
+msgid "Telecharger"
+msgstr "Descargar"
+
+#. module: survey_attachment
+#: model:ir.model.fields,field_description:survey_attachment.field_survey_user_input_line_file
+msgid "Upload file"
+msgstr "Subir archivo"
+
+#. module: survey_attachment
+#: selection:survey.user_input_line,file_type:0
+msgid "image"
+msgstr "imagen"
+
+#. module: survey_attachment
+#: selection:survey.user_input_line,file_type:0
+msgid "pdf"
+msgstr "pdf"

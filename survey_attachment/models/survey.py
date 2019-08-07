@@ -6,13 +6,13 @@ import base64
 class SurveyQuestion(models.Model):
     _inherit = 'survey.question'
 
-    question_attachment = fields.Binary('Question attachment')
+    question_attachment = fields.Binary('Pregunta adjuntos')
     type = fields.Selection([
         ('free_text', 'Multiple Lines Text Box'),
         ('textbox', 'Single Line Text Box'),
         ('numerical_box', 'Numerical Value'),
-        ('date', 'Date'),
-        ('upload_file', 'Upload file'),
+        ('datetime', 'Fecha y hora'),
+        ('upload_file', 'Subir archivo'),
         ('simple_choice', 'Multiple choice: only one answer'),
         ('multiple_choice', 'Multiple choice: multiple answers allowed'),
         ('matrix', 'Matrix')], string='Type of Question', default='free_text', required=True)
@@ -24,9 +24,9 @@ class SurveyUserInputLine(models.Model):
     answer_type = fields.Selection([
         ('text', 'Text'),
         ('number', 'Number'),
-        ('date', 'Date'),
+        ('date', 'Fecha'),
         ('free_text', 'Free Text'),
-        ('upload_file', 'Upload file'),
+        ('upload_file', 'Subir archivo'),
         ('suggestion', 'Suggestion'),
         ('list', 'List box'),
         ('matrix_models', 'Matrix models')], string='Answer Type')
@@ -43,17 +43,22 @@ class SurveyUserInputLine(models.Model):
             'skipped': False
         }
         file_name = str(post[answer_tag])
+        print('file name',file_name)
         file_type = file_name.find("('application/pdf')")
         image_type = file_name.find("('image/png')")
+        print('image type',image_type)
         if file_type > -1:
             vals.update({'file_type': 'pdf'})
         if image_type > -1:
             vals.update({'file_type': 'image'})
 
         if question.constr_mandatory:
-            file = base64.encodebytes(post[answer_tag].read())
+            #file = base64.encodebytes(post[answer_tag].read())
+            file = base64.encodestring(post[answer_tag].read())
         else:
-            file = base64.encodebytes(post[answer_tag].read()) if post[answer_tag] else None
+            print('ingreso aqui')
+            #file = base64.encodebytes(post[answer_tag].read()) if post[answer_tag] else None
+            file = base64.b64encode(post[answer_tag].read()) if post[answer_tag] else None
         if answer_tag in post:
             vals.update({'answer_type': 'upload_file', 'file': file})
         else:
