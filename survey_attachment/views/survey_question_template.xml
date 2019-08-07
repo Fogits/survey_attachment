@@ -103,15 +103,15 @@
 
     <template id="upload_file" name="Upload file">
         <div class="input-file-container">
-
-
             <t t-if="user_input_line_upload_file">
                 <t t-foreach="user_input_line_upload_file" t-as="upload_file" t-if="upload_file.question_id.id == question.id">
                     <t t-if="upload_file.file_type == 'pdf'">
-                        <a width="100px" height="100px" t-att-href="'data:application/pdf;base64,%s' % to_text(upload_file.file)" target="_blank">Telecharger</a>
+                        <a width="100px" height="100px" t-att-href="'data:application/pdf;base64,%s' % upload_file.file" target="_blank">Telecharger</a>
+                        <!--<a width="100px" height="100px" t-att-href="'data:application/pdf;base64,%s' % to_text(upload_file.file)" target="_blank">Telecharger</a>-->
                     </t>
                     <t t-if="upload_file.file_type == 'image'">
-                        <img width="100px" style="height: 100px;" class="img-thumbnail" t-att-src="'data:image/*;base64,%s' % to_text(upload_file.file)"/>
+                        <img width="100px" style="height: 100px;" class="img-thumbnail" t-att-src="'data:image/*;base64,%s' % upload_file.file"/>
+                        <!--<img width="100px" style="height: 100px;" class="img-thumbnail" t-att-src="'data:image/*;base64,%s',% to_text(upload_file.file)"/>-->
                     </t>
                 </t>
             </t>

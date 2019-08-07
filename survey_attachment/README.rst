@@ -22,7 +22,6 @@ Contributors
 ------------
 
 * Fogits International  <https://www.fogits.com/>
-* Makepler Systems <Ivan Porras>
 
 
 Maintainer
