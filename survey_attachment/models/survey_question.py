@@ -1,37 +1,21 @@
-# -*- coding: utf-8 -*-
-from odoo import api, fields, models, tools, SUPERUSER_ID, _
-from odoo.exceptions import AccessError, MissingError, ValidationError, UserError
 import base64
 
+from odoo import api, fields, models
 
 
 class SurveyQuestion(models.Model):
     _inherit = 'survey.question'
 
     question_attachment = fields.Binary('Question attachment')
-    type = fields.Selection([
-        ('free_text', 'Multiple Lines Text Box'),
-        ('textbox', 'Single Line Text Box'),
-        ('numerical_box', 'Numerical Value'),
-        ('date', 'Date'),
-        ('upload_file', 'Upload file'),
-        ('simple_choice', 'Multiple choice: only one answer'),
-        ('multiple_choice', 'Multiple choice: multiple answers allowed'),
-        ('matrix', 'Matrix')], string='Type of Question', default='free_text', required=True)
+    type = fields.Selection(
+        selection_add=[('upload_file', 'Upload file')])
 
 
 class SurveyUserInputLine(models.Model):
     _inherit = 'survey.user_input_line'
 
-    answer_type = fields.Selection([
-        ('text', 'Text'),
-        ('number', 'Number'),
-        ('date', 'Date'),
-        ('free_text', 'Free Text'),
-        ('upload_file', 'Upload file'),
-        ('suggestion', 'Suggestion'),
-        ('list', 'List box'),
-        ('matrix_models', 'Matrix models')], string='Answer Type')
+    answer_type = fields.Selection(
+        selection_add=[('upload_file', 'Upload file')])
 
     file = fields.Binary('Upload file')
     file_type = fields.Selection([('image', 'image'), ('pdf', 'pdf')])
@@ -70,4 +54,3 @@ class SurveyUserInputLine(models.Model):
         else:
             old_uil.create(vals)
         return True
-

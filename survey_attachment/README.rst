@@ -22,6 +22,7 @@ Contributors
 ------------
 
 * Fogits International  <https://www.fogits.com/>
+- Hugo Adan <hugo@vauxoo.com>
 
 
 Maintainer

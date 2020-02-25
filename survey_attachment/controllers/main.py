@@ -1,18 +1,10 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import json
 import logging
-import werkzeug
-from datetime import datetime
-from math import ceil
 
-from odoo import fields, http, SUPERUSER_ID
-from odoo.http import request
-from odoo.tools import ustr
+from odoo import http
 from odoo.addons.survey.controllers.main import Survey
 from odoo.http import request
-import html2text
 
 _logger = logging.getLogger(__name__)
 
@@ -30,8 +22,10 @@ class WebsiteSurveyExtend(Survey):
         user_input = request.env['survey.user_input']
         user_input_line = request.env['survey.user_input_line']
 
-        question_ids = survey_question.sudo().search([('type', '=', 'upload_file'), ('survey_id', '=', survey.id)])
-        user_input_id = user_input.sudo().search([('token', '=', token), ('survey_id', '=', survey.id)])
+        question_ids = survey_question.sudo().search([
+            ('type', '=', 'upload_file'), ('survey_id', '=', survey.id)])
+        user_input_id = user_input.sudo().search([
+            ('token', '=', token), ('survey_id', '=', survey.id)], limit=1)
 
         user_input_line_upload_file = []
         for question in question_ids:
@@ -42,9 +36,8 @@ class WebsiteSurveyExtend(Survey):
                 ('answer_type', '=', 'upload_file')
             ])
             user_input_line_upload_file.append(user_input_line)
-        return request.render('survey.survey_print',
-                              {'survey': survey,
-                               'token': token,
-                               'page_nr': 0,
-                               'quizz_correction': True if survey.quizz_mode and token else False,
-                               'user_input_line_upload_file': user_input_line_upload_file})
+        return request.render(
+            'survey.survey_print',
+            {'survey': survey, 'token': token, 'page_nr': 0,
+             'quizz_correction': bool(survey.quizz_mode and token),
+             'user_input_line_upload_file': user_input_line_upload_file})
